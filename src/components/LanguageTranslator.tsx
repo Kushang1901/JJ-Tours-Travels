@@ -115,7 +115,39 @@ export default function LanguageTranslator() {
       };
     }
 
-    // 2. Listen for translation requests
+    // 2. Continuous banner suppressor (prevents top banner from appearing and body top offset)
+    const suppressGoogleBanner = () => {
+      if (typeof document !== "undefined") {
+        if (document.body && document.body.style.top !== "0px" && document.body.style.top !== "") {
+          document.body.style.top = "0px";
+        }
+        if (document.body && document.body.style.position !== "static" && document.body.style.position !== "") {
+          document.body.style.position = "static";
+        }
+        const banners = document.querySelectorAll(
+          '.goog-te-banner-frame, iframe.skiptranslate, .VIpgJd-ZVi9od-ORHb-OEVmfc, iframe[id^=":"]'
+        );
+        banners.forEach((el) => {
+          const htmlEl = el as HTMLElement;
+          htmlEl.style.setProperty("display", "none", "important");
+          htmlEl.style.setProperty("visibility", "hidden", "important");
+          htmlEl.style.setProperty("height", "0", "important");
+          htmlEl.style.setProperty("opacity", "0", "important");
+          htmlEl.style.setProperty("pointer-events", "none", "important");
+        });
+      }
+    };
+
+    const observer = new MutationObserver(suppressGoogleBanner);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+
+    const bannerInterval = setInterval(suppressGoogleBanner, 150);
+
+    // 3. Listen for translation requests
     const handleTranslate = (e: Event) => {
       const customEvent = e as CustomEvent<{
         fromCode: string;
@@ -148,6 +180,7 @@ export default function LanguageTranslator() {
 
       // Trigger the Google Translate select dropdown element
       setTimeout(() => {
+        suppressGoogleBanner();
         const select = document.querySelector(".goog-te-combo") as HTMLSelectElement;
         if (select) {
           select.value = toCode;
@@ -160,6 +193,7 @@ export default function LanguageTranslator() {
 
         // Hide translation loader after translation applies smoothly
         setTimeout(() => {
+          suppressGoogleBanner();
           setTranslatingState({
             active: false,
             fromName: "",
@@ -170,7 +204,11 @@ export default function LanguageTranslator() {
     };
 
     window.addEventListener("trigger-language-translate", handleTranslate);
-    return () => window.removeEventListener("trigger-language-translate", handleTranslate);
+    return () => {
+      observer.disconnect();
+      clearInterval(bannerInterval);
+      window.removeEventListener("trigger-language-translate", handleTranslate);
+    };
   }, []);
 
   return (
