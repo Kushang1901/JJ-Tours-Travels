@@ -16,11 +16,15 @@ import CornerChatbot from "@/components/CornerChatbot";
 import BackToTop from "@/components/BackToTop";
 import BookingModal from "@/components/BookingModal";
 import SectionPageLoader from "@/components/SectionPageLoader";
+import LanguageTranslator from "@/components/LanguageTranslator";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* Multi-page Style Transition Loader */}
+      {/* Dynamic Google Translation Engine & Translation Transition Loader */}
+      <LanguageTranslator />
+
+      {/* Multi-page Style Section Loader */}
       <SectionPageLoader />
 
       <Navbar />

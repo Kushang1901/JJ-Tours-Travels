@@ -178,4 +178,15 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="top-whatsapp-link"
-                style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center"
+                style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px 8px", fontSize: "0.85rem", borderRadius: "var(--r-md)" }}
+              >
+                <MessageCircle size={15} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
