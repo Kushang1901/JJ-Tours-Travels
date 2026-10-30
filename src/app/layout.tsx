@@ -48,8 +48,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${plusJakartaSans.variable}`}>
-      <body className="antialiased">
+    <html
+      lang="en"
+      className={`${outfit.variable} ${plusJakartaSans.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="antialiased" suppressHydrationWarning>
         <LanguageTranslator />
         <SectionPageLoader />
         <Navbar />
