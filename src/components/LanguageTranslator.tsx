@@ -15,6 +15,36 @@ export const supportedLanguages: LanguageOption[] = [
   { code: "hi", name: "Hindi", nativeName: "हिंदी" },
 ];
 
+// 1. Globally define callback function immediately so Google Translate element.js always finds it
+const initGoogleTranslateElement = () => {
+  try {
+    if (
+      typeof window !== "undefined" &&
+      (window as any).google &&
+      (window as any).google.translate &&
+      (window as any).google.translate.TranslateElement
+    ) {
+      const container = document.getElementById("google_translate_element");
+      if (container && !container.hasChildNodes()) {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,gu,hi",
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    }
+  } catch (err) {
+    console.warn("Google translate element initialization error:", err);
+  }
+};
+
+if (typeof window !== "undefined") {
+  (window as any).googleTranslateElementInit = initGoogleTranslateElement;
+}
+
 export function LanguageSwitcher({ className = "" }: { className?: string }) {
   const [currentLang, setCurrentLang] = useState<string>("en");
 
@@ -91,31 +121,21 @@ export default function LanguageTranslator() {
   });
 
   useEffect(() => {
-    // 1. Initialize Google Translate Script
-    if (!document.getElementById("google-translate-script")) {
+    // Always assign callback function before anything else runs
+    (window as any).googleTranslateElementInit = initGoogleTranslateElement;
+
+    // Check if script is already loaded or already present in DOM
+    if ((window as any).google?.translate?.TranslateElement) {
+      initGoogleTranslateElement();
+    } else if (!document.getElementById("google-translate-script")) {
       const script = document.createElement("script");
       script.id = "google-translate-script";
       script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       script.async = true;
       document.body.appendChild(script);
-
-      (window as any).googleTranslateElementInit = () => {
-        try {
-          new (window as any).google.translate.TranslateElement(
-            {
-              pageLanguage: "en",
-              includedLanguages: "en,gu,hi",
-              autoDisplay: false,
-            },
-            "google_translate_element"
-          );
-        } catch (err) {
-          console.error("Google translate element initialization error:", err);
-        }
-      };
     }
 
-    // 2. Continuous banner suppressor (prevents top banner from appearing and body top offset)
+    // Continuous banner suppressor
     const suppressGoogleBanner = () => {
       if (typeof document !== "undefined") {
         if (document.body && document.body.style.top !== "0px" && document.body.style.top !== "") {
@@ -145,9 +165,9 @@ export default function LanguageTranslator() {
       subtree: true,
     });
 
-    const bannerInterval = setInterval(suppressGoogleBanner, 150);
+    const bannerInterval = setInterval(suppressGoogleBanner, 200);
 
-    // 3. Listen for translation requests
+    // Listen for translation requests
     const handleTranslate = (e: Event) => {
       const customEvent = e as CustomEvent<{
         fromCode: string;

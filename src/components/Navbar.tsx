@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Flag, Phone, MessageCircle, Menu, X } from "lucide-react";
 import { openBookingModal } from "@/lib/bookingHelper";
-
 import { LanguageSwitcher } from "@/components/LanguageTranslator";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,10 +49,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar - Clean & without Book/Call buttons as requested */}
+      {/* Main Sticky Navbar */}
       <header className={`main-header ${isScrolled ? "scrolled" : ""}`} id="header">
         <div className="container header-container">
-          <a href="#home" className="brand-link">
+          <Link href="/" className="brand-link" onClick={closeMenu}>
             <div className="brand-logo-wrapper">
               <img
                 src="/logo.png"
@@ -65,16 +67,46 @@ export default function Navbar() {
               <span className="brand-sub">Tours &amp; Travellers</span>
               <span className="brand-badge">All Gujarat Service</span>
             </div>
-          </a>
+          </Link>
 
-          {/* Clean Desktop Navigation without book and call buttons */}
+          {/* Clean Desktop Navigation with active route highlighting */}
           <nav className="desktop-nav">
-            <a href="#services" className="nav-link">Our Services</a>
-            <a href="#fleet" className="nav-link">Vehicle Fleet</a>
-            <a href="#group-booking" className="nav-link">Group Booking</a>
-            <a href="#destinations" className="nav-link">Gujarat Routes</a>
-            <a href="#why-us" className="nav-link">Why Choose Us</a>
-            <a href="#faq" className="nav-link">FAQ</a>
+            <Link
+              href="/"
+              className={`nav-link ${pathname === "/" ? "active" : ""}`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/services"
+              className={`nav-link ${pathname === "/services" ? "active" : ""}`}
+            >
+              Our Services
+            </Link>
+            <Link
+              href="/group-booking"
+              className={`nav-link ${pathname === "/group-booking" ? "active" : ""}`}
+            >
+              Group Booking
+            </Link>
+            <Link
+              href="/gujarat-routes"
+              className={`nav-link ${pathname === "/gujarat-routes" ? "active" : ""}`}
+            >
+              Gujarat Routes
+            </Link>
+            <Link
+              href="/why-us"
+              className={`nav-link ${pathname === "/why-us" ? "active" : ""}`}
+            >
+              Why Choose Us
+            </Link>
+            <Link
+              href="/faq"
+              className={`nav-link ${pathname === "/faq" ? "active" : ""}`}
+            >
+              FAQ
+            </Link>
           </nav>
 
           <div className="header-actions">
@@ -100,7 +132,7 @@ export default function Navbar() {
         {/* Mobile Drawer */}
         <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""}`}>
           <div className="mobile-drawer-header">
-            <div className="mobile-brand">
+            <Link href="/" className="mobile-brand" onClick={closeMenu}>
               <div className="mobile-brand-logo-wrap">
                 <img src="/logo.png" alt="Jai Jalaram Tours" width={44} height={44} />
               </div>
@@ -108,30 +140,54 @@ export default function Navbar() {
                 <span className="mobile-brand-name">Jai Jalaram Tours</span>
                 <span className="mobile-brand-sub">All Gujarat Travel Service</span>
               </div>
-            </div>
+            </Link>
             <button className="mobile-close" onClick={closeMenu} aria-label="Close menu">
               <X size={20} />
             </button>
           </div>
           <div className="mobile-nav-links">
-            <a href="#services" className="mobile-link" onClick={closeMenu}>
-              Services (Cars &amp; Buses)
-            </a>
-            <a href="#fleet" className="mobile-link" onClick={closeMenu}>
-              Our Vehicle Fleet
-            </a>
-            <a href="#group-booking" className="mobile-link" onClick={closeMenu}>
+            <Link
+              href="/"
+              className={`mobile-link ${pathname === "/" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
+              Home
+            </Link>
+            <Link
+              href="/services"
+              className={`mobile-link ${pathname === "/services" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
+              Our Services (Cars &amp; Buses)
+            </Link>
+            <Link
+              href="/group-booking"
+              className={`mobile-link ${pathname === "/group-booking" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
               Whole Gujarat Group Booking
-            </a>
-            <a href="#destinations" className="mobile-link" onClick={closeMenu}>
-              Popular Gujarat Circuits
-            </a>
-            <a href="#why-us" className="mobile-link" onClick={closeMenu}>
+            </Link>
+            <Link
+              href="/gujarat-routes"
+              className={`mobile-link ${pathname === "/gujarat-routes" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
+              Popular Gujarat Routes
+            </Link>
+            <Link
+              href="/why-us"
+              className={`mobile-link ${pathname === "/why-us" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
               Why Choose Us
-            </a>
-            <a href="#faq" className="mobile-link" onClick={closeMenu}>
+            </Link>
+            <Link
+              href="/faq"
+              className={`mobile-link ${pathname === "/faq" ? "active" : ""}`}
+              onClick={closeMenu}
+            >
               FAQ
-            </a>
+            </Link>
 
             {/* Language Selector in Mobile Drawer */}
             <div className="mobile-drawer-lang-wrap">
@@ -139,7 +195,7 @@ export default function Navbar() {
               <LanguageSwitcher className="mobile-drawer-lang-pills" />
             </div>
 
-            {/* Upper Top Bar Info (Relocated to Mobile Nav View below nav links & above buttons) */}
+            {/* Upper Top Bar Info */}
             <div className="mobile-topbar-info-box">
               <div className="mobile-topbar-motto">
                 <Flag size={14} className="text-amber" />

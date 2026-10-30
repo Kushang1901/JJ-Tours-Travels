@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import LanguageTranslator from "@/components/LanguageTranslator";
+import SectionPageLoader from "@/components/SectionPageLoader";
+import BackToTop from "@/components/BackToTop";
+import CornerChatbot from "@/components/CornerChatbot";
+import BookingModal from "@/components/BookingModal";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -43,7 +50,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${plusJakartaSans.variable}`}>
       <body className="antialiased">
+        <LanguageTranslator />
+        <SectionPageLoader />
+        <Navbar />
         {children}
+        <Footer />
+        <BackToTop />
+        <CornerChatbot />
+        <BookingModal />
       </body>
     </html>
   );

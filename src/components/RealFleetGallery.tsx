@@ -164,7 +164,7 @@ export default function RealFleetGallery() {
           <div className="real-photo-card highlight-card">
             <div className="real-photo-img-wrap">
               <img
-                src="/bus-photos/toyota-rumion%20image.avif"
+                src="/bus-photos/toyota-rumion.avif"
                 alt="Toyota Rumion 7 Seater Family MPV Car - Jai Jalaram Tours"
                 loading="lazy"
               />

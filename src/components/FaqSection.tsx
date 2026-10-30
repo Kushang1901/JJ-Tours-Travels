@@ -42,7 +42,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="faq-section section-padding">
+    <section className="faq-section section-padding" id="faq">
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">GOT QUESTIONS?</span>

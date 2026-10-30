@@ -1,52 +1,33 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import QuickRoutes from "@/components/QuickRoutes";
-import ServicesGrid from "@/components/ServicesGrid";
-import GujaratCoverage from "@/components/GujaratCoverage";
-import FleetShowcase from "@/components/FleetShowcase";
-import RealFleetGallery from "@/components/RealFleetGallery";
-import TourPackages from "@/components/TourPackages";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import HowItWorks from "@/components/HowItWorks";
-import FaqSection from "@/components/FaqSection";
-import OwnerCallout from "@/components/OwnerCallout";
-import Footer from "@/components/Footer";
-import CornerChatbot from "@/components/CornerChatbot";
-import BackToTop from "@/components/BackToTop";
-import BookingModal from "@/components/BookingModal";
-import SectionPageLoader from "@/components/SectionPageLoader";
-import LanguageTranslator from "@/components/LanguageTranslator";
+import {
+  HomeServicesTeaser,
+  HomeFleetTeaser,
+  HomeGroupBookingTeaser,
+  HomeWhyUsTeaser,
+} from "@/components/HomeSections";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* Dynamic Google Translation Engine & Translation Transition Loader */}
-      <LanguageTranslator />
-
-      {/* Multi-page Style Section Loader */}
-      <SectionPageLoader />
-
-      <Navbar />
+      {/* 1. Grand Hero with Booking CTA */}
       <HeroSection />
+
+      {/* 2. Fast Route Booking Cards */}
       <QuickRoutes />
-      <ServicesGrid />
-      <GujaratCoverage />
-      <FleetShowcase />
-      <RealFleetGallery />
-      <TourPackages />
-      <WhyChooseUs />
-      <HowItWorks />
-      <FaqSection />
-      <OwnerCallout />
-      <Footer />
 
-      {/* Floating Bottom Widgets */}
-      <BackToTop />
-      <CornerChatbot />
+      {/* 3. Concise Services Teaser (Linking to /services) */}
+      <HomeServicesTeaser />
 
-      {/* Global Booking Form Popup Modal */}
-      <BookingModal />
+      {/* 4. Real Fleet Photo Teaser (Linking to /fleet) */}
+      <HomeFleetTeaser />
+
+      {/* 5. Group Booking & Gujarat Coverage Strip (Linking to /group-booking) */}
+      <HomeGroupBookingTeaser />
+
+      {/* 6. Why Choose Us Trust Pillars (Linking to /why-us) */}
+      <HomeWhyUsTeaser />
     </main>
   );
 }

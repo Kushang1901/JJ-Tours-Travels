@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Phone, MessageCircle, MapPin, CalendarCheck } from "lucide-react";
+import Link from "next/link";
+import { Phone, MessageCircle, MapPin, CalendarCheck, ArrowRight } from "lucide-react";
 import { openBookingModal } from "@/lib/bookingHelper";
 
 export default function Footer() {
@@ -14,14 +15,15 @@ export default function Footer() {
   return (
     <footer className="main-footer">
       <div className="container footer-container">
+        {/* Brand Column */}
         <div className="footer-col brand-col">
-          <div className="footer-brand">
+          <Link href="/" className="footer-brand" style={{ textDecoration: "none" }}>
             <img src="/logo.png" alt="Jai Jalaram Tours Logo" width={60} height={60} />
             <div>
               <h3>Jai Jalaram Tours</h3>
               <p>Tours &amp; Travellers</p>
             </div>
-          </div>
+          </Link>
           <p className="footer-about">
             Gujarat's trusted group travelling service provider. Four-wheeler car rentals,
             Tempo Travellers, and luxury tourist buses connecting every corner of Gujarat with safety,
@@ -30,81 +32,55 @@ export default function Footer() {
           <div className="footer-motto">
             <span>॥ શ્રી ગણેશાય નમઃ ॥ જય જલારામ બાપા ॥</span>
           </div>
+
+          <div style={{ marginTop: 16 }}>
+            <Link
+              href="/services"
+              className="btn btn-secondary"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "8px 14px",
+                fontSize: "0.85rem",
+                borderRadius: "var(--r-md)",
+                textDecoration: "none",
+              }}
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
 
+        {/* Quick Navigation Pages Column */}
         <div className="footer-col">
-          <h4 className="footer-title">Vehicle Services</h4>
+          <h4 className="footer-title">Navigation</h4>
           <ul className="footer-links">
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("Sedan (Dzire/Etios - 4 Seater)")}
-              >
-                Swift Dzire &amp; Etios (4 Seater)
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("MUV (Ertiga / XL6 - 6 Seater)")}
-              >
-                Ertiga &amp; XL6 (6 Seater)
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("Innova Crysta (7-8 Seater Luxury)")}
-              >
-                Toyota Innova Crysta (7-8 Seater)
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("Tempo Traveller (12 Seater Luxury AC)")}
-              >
-                12 &amp; 17 Seater Tempo Traveller
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("Tempo Traveller (26 Seater High Roof AC)")}
-              >
-                20 &amp; 26 Seater Tempo Traveller
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => handleSelect("Luxury Coach Bus (45 Seater 2x2)")}
-              >
-                32, 45 &amp; 56 Seater Deluxe Buses
-              </button>
-            </li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/services">Our Services</Link></li>
+            <li><Link href="/group-booking">Group Booking</Link></li>
+            <li><Link href="/gujarat-routes">Gujarat Routes</Link></li>
+            <li><Link href="/why-us">Why Choose Us</Link></li>
+            <li><Link href="/faq">FAQ</Link></li>
           </ul>
         </div>
 
+        {/* Popular Gujarat Yatras Column */}
         <div className="footer-col">
           <h4 className="footer-title">Popular Gujarat Yatras</h4>
           <ul className="footer-links">
-            <li><a href="#destinations">Somnath - Dwarka Pilgrimage</a></li>
-            <li><a href="#destinations">Statue of Unity &amp; Kevadia</a></li>
-            <li><a href="#destinations">Sasan Gir Lion Safari &amp; Diu</a></li>
-            <li><a href="#destinations">Kutch Rann Utsav &amp; Mandvi</a></li>
-            <li><a href="#destinations">Ambaji Temple &amp; Mount Abu</a></li>
-            <li><a href="#destinations">Palitana Shatrunjaya Tirth</a></li>
-            <li><a href="#destinations">Marriage Baarat Bus Booking</a></li>
+            <li><Link href="/gujarat-routes">Somnath - Dwarka Pilgrimage</Link></li>
+            <li><Link href="/gujarat-routes">Statue of Unity &amp; Kevadia</Link></li>
+            <li><Link href="/gujarat-routes">Sasan Gir Lion Safari &amp; Diu</Link></li>
+            <li><Link href="/gujarat-routes">Kutch Rann Utsav &amp; Mandvi</Link></li>
+            <li><Link href="/gujarat-routes">Ambaji Temple &amp; Mount Abu</Link></li>
+            <li><Link href="/gujarat-routes">Palitana Shatrunjaya Tirth</Link></li>
+            <li><Link href="/group-booking">Marriage Baarat Bus Booking</Link></li>
           </ul>
         </div>
 
+        {/* Direct Booking Office Column */}
         <div className="footer-col contact-col">
           <h4 className="footer-title">Direct Booking Office</h4>
           <div className="footer-contact-item">
