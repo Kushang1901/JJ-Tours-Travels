@@ -24,6 +24,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Sync body scroll & class to prevent background scrolling and hide overlapping floating widgets
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add("mobile-menu-active");
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.classList.remove("mobile-menu-active");
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.classList.remove("mobile-menu-active");
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
@@ -50,7 +65,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Sticky Navbar */}
-      <header className={`main-header ${isScrolled ? "scrolled" : ""}`} id="header">
+      <header className={`main-header ${isScrolled ? "scrolled" : ""} ${mobileMenuOpen ? "drawer-active" : ""}`} id="header">
         <div className="container header-container">
           <Link href="/" className="brand-link" onClick={closeMenu}>
             <div className="brand-logo-wrapper">
@@ -219,24 +234,27 @@ export default function Navbar() {
             </button>
           </div>
           <div className="mobile-drawer-footer">
-            <p>Owner Contact: <strong>+91 99258 91467</strong></p>
+            <div className="mobile-drawer-contact-info">
+              <span className="drawer-contact-lbl">24/7 Owner Direct Contact</span>
+              <a href="tel:+919925891467" className="drawer-contact-num">+91 99258 91467</a>
+            </div>
             <div className="mobile-drawer-footer-actions">
               <a
                 href="tel:+919925891467"
-                className="btn btn-secondary"
-                style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px 8px", fontSize: "0.85rem" }}
+                className="drawer-call-btn"
+                title="Call Owner Directly"
               >
-                <Phone size={15} />
+                <Phone size={16} />
                 <span>Call Directly</span>
               </a>
               <a
                 href="https://wa.me/919925891467?text=Hello%20Jai%20Jalaram%20Tours%20and%20Travellers,%20I%20want%20to%20inquire%20about%20travel%20service."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="top-whatsapp-link"
-                style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px 8px", fontSize: "0.85rem", borderRadius: "var(--r-md)" }}
+                className="drawer-wa-btn"
+                title="Chat on WhatsApp"
               >
-                <MessageCircle size={15} />
+                <MessageCircle size={16} />
                 <span>WhatsApp</span>
               </a>
             </div>

@@ -6,9 +6,21 @@ import HowItWorks from "@/components/HowItWorks";
 import { ShieldCheck, HeartHandshake, Award, Clock, Users, PhoneCall } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Why Choose Us | Direct Owner Guarantee & Safe Travels | Jai Jalaram Tours",
+  title: "Why Choose Us | Direct Owner Guarantee & Safe Travels",
   description:
     "Learn why thousands of families and groups trust Jai Jalaram Tours & Travellers: direct owner pricing, guaranteed punctual doorstep pickup, verified polite chauffeurs, and 24/7 customer support.",
+  alternates: {
+    canonical: "https://jaijalaramtravels.in/why-us",
+  },
+  openGraph: {
+    title: "Why Choose Us | Direct Owner Guarantee & Safe Travels | Jai Jalaram Tours",
+    description:
+      "Direct owner booking, guaranteed punctuality, sanitized vehicles, and respectful hospitality across every kilometer in Gujarat. Call +91 99258 91467.",
+    url: "https://jaijalaramtravels.in/why-us",
+    siteName: "Jai Jalaram Tours and Travellers",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function WhyUsPage() {

@@ -5,9 +5,76 @@ import FaqSection from "@/components/FaqSection";
 import { MessageCircle, Phone, HelpCircle, ShieldAlert, CreditCard, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions (FAQ) | Jai Jalaram Tours & Travellers",
+  title: "Frequently Asked Questions (FAQ)",
   description:
     "Find answers to frequently asked questions about booking 4-wheelers, Tempo Travellers, and luxury buses in Gujarat. Transparent pricing, pickup areas, luggage policies, and payment terms.",
+  alternates: {
+    canonical: "https://jaijalaramtravels.in/faq",
+  },
+  openGraph: {
+    title: "Frequently Asked Questions (FAQ) | Jai Jalaram Tours & Travellers",
+    description:
+      "Clear answers regarding Gujarat vehicle fleet, doorstep pickup, pricing structure, luggage allowance, and reservation steps. Call +91 99258 91467.",
+    url: "https://jaijalaramtravels.in/faq",
+    siteName: "Jai Jalaram Tours and Travellers",
+    locale: "en_IN",
+    type: "website",
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Do you provide group travel and bus service from any city in Gujarat?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes! Jai Jalaram Tours & Travellers operates throughout the entire state of Gujarat. We provide pickup and drop service from Ahmedabad, Surat, Rajkot, Vadodara, Bhavnagar, Jamnagar, Junagadh, Bhuj, Gandhidham, Mehsana, Anand, Vapi, Valsad, and all interior towns and villages to any destination.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What 4-wheeler cars are available for booking?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our 4-wheeler fleet includes Swift Dzire and Toyota Etios (Sedan for 4 passengers), Maruti Ertiga and XL6 (6-seater MUV), and premium Toyota Innova Crysta (7-8 seater luxury). All cars are AC, clean, and driven by experienced highway chauffeurs.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What seating capacities do your Tempo Travellers offer?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We provide 12-seater, 17-seater, 20-seater, and 26-seater luxury AC Tempo Travellers. They feature push-back reclining seats, high-roof ceilings, dedicated music/TV systems, charging points, and ample luggage boot space.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can we book large buses for wedding baarat or pilgrim sanghs?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Absolutely! We specialize in bulk group bookings and provide 32-seater Mini Buses, 45-seater 2x2 Luxury Coach Buses, and 56-seater Deluxe Buses for marriage functions, community yatras (Somnath, Dwarka, Ambaji, Palitana), and school/college tours.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does the WhatsApp booking process work?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "When you fill the booking form on this website and click 'Send Booking Inquiry on WhatsApp', your smartphone or computer will automatically open WhatsApp with a clean, pre-structured message addressed directly to owner mobile number +91 99258 91467. You just hit send, and the owner will respond immediately with rates and vehicle confirmation.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is included in the fare quote?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our owner offers both all-inclusive package rates (covering vehicle rent, driver allowance, toll tax, state permits, and fuel) or per-kilometer billing according to your preference. Everything is discussed upfront with zero hidden charges.",
+      },
+    },
+  ],
 };
 
 export default function FaqPage() {
@@ -31,6 +98,10 @@ export default function FaqPage() {
 
   return (
     <main className="subpage-main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <PageHeader
         breadcrumbCurrent="FAQ"
         badge="HELP & FREQUENT QUESTIONS"

@@ -6,9 +6,21 @@ import { Car, Bus, Users, ShieldCheck, HeartHandshake, Plane, Sparkles } from "l
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our Services | 4-Wheeler Cars, Tempo Travellers & Luxury Buses | Jai Jalaram Tours",
+  title: "Our Services | 4-Wheeler Cars, Tempo Travellers & Luxury Buses",
   description:
     "Explore our complete travel services in Gujarat: Four-wheeler car rentals (Dzire, Etios, Ertiga, Innova Crysta), Luxury Tempo Travellers (12-26 seater), and Deluxe Coach Buses (32-56 seater). Call +91 99258 91467.",
+  alternates: {
+    canonical: "https://jaijalaramtravels.in/services",
+  },
+  openGraph: {
+    title: "Our Services | 4-Wheeler Cars, Tempo Travellers & Luxury Buses | Jai Jalaram Tours",
+    description:
+      "Complete travelling services across all 33 districts of Gujarat. Sedans, MUVs, Innova Crysta, 12-26 Seater Tempos and 32-56 Seater Deluxe Buses.",
+    url: "https://jaijalaramtravels.in/services",
+    siteName: "Jai Jalaram Tours and Travellers",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function ServicesPage() {

@@ -5,9 +5,21 @@ import GujaratCoverage from "@/components/GujaratCoverage";
 import { Users, Bus, Heart, Sparkles, Building2, GraduationCap, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Group Booking & Bus Hire Across Whole Gujarat | Jai Jalaram Tours",
+  title: "Whole Gujarat Group Booking | Marriage Baarat & Yatra Buses",
   description:
     "Specialized group travel services across all 33 Gujarat districts. Book Tempo Travellers (12-26 seater) & Luxury Buses (32-56 seater) for wedding baarats, pilgrim sanghs, corporate picnics & tours.",
+  alternates: {
+    canonical: "https://jaijalaramtravels.in/group-booking",
+  },
+  openGraph: {
+    title: "Whole Gujarat Group Booking | Marriage Baarat & Yatra Buses | Jai Jalaram Tours",
+    description:
+      "Doorstep vehicle dispatch from any city, taluka, or village in Gujarat. Large-capacity fleet coordination for weddings, yatras, and institutions. Call +91 99258 91467.",
+    url: "https://jaijalaramtravels.in/group-booking",
+    siteName: "Jai Jalaram Tours and Travellers",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function GroupBookingPage() {

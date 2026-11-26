@@ -6,9 +6,21 @@ import TourPackages from "@/components/TourPackages";
 import { Compass, MapPin, CheckCircle2, UtensilsCrossed, Clock, Fuel } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Gujarat Routes & Tour Packages | Somnath, Dwarka, SOU, Gir & Kutch | Jai Jalaram Tours",
+  title: "Popular Gujarat Routes & Yatras | Somnath, Dwarka, SOU, Gir & Kutch",
   description:
     "Discover customized Gujarat tour packages and popular routes: Saurashtra Darshan (Somnath-Dwarka), Statue of Unity (Kevadia), Sasan Gir Safari, Kutch Rann Utsav & Ambaji. Book your vehicle today.",
+  alternates: {
+    canonical: "https://jaijalaramtravels.in/gujarat-routes",
+  },
+  openGraph: {
+    title: "Popular Gujarat Routes & Yatras | Somnath, Dwarka, SOU, Gir & Kutch",
+    description:
+      "Customized itineraries and instant route booking for Somnath, Dwarka, Statue of Unity, Sasan Gir, and Kutch with doorstep pickup across Gujarat.",
+    url: "https://jaijalaramtravels.in/gujarat-routes",
+    siteName: "Jai Jalaram Tours and Travellers",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function GujaratRoutesPage() {
