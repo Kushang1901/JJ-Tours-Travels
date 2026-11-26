@@ -49,7 +49,7 @@ export function HomeServicesTeaser() {
   ];
 
   return (
-    <section className="section-padding bg-pure">
+    <section className="home-services-teaser section-padding">
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">WHAT WE OFFER</span>

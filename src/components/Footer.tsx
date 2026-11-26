@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, MapPin, CalendarCheck, ArrowRight } from "lucide-react";
+import { Phone, MessageCircle, MapPin, CalendarCheck } from "lucide-react";
 import { openBookingModal } from "@/lib/bookingHelper";
 
 export default function Footer() {
@@ -29,28 +29,6 @@ export default function Footer() {
             Tempo Travellers, and luxury tourist buses connecting every corner of Gujarat with safety,
             punctuality, and devotion.
           </p>
-          <div className="footer-motto">
-            <span>॥ શ્રી ગણેશાય નમઃ ॥ જય જલારામ બાપા ॥</span>
-          </div>
-
-          <div style={{ marginTop: 16 }}>
-            <Link
-              href="/services"
-              className="btn btn-secondary"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "8px 14px",
-                fontSize: "0.85rem",
-                borderRadius: "var(--r-md)",
-                textDecoration: "none",
-              }}
-            >
-              <span>Explore Our Services</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
         </div>
 
         {/* Quick Navigation Pages Column */}
@@ -104,14 +82,7 @@ export default function Footer() {
               +91 99258 91467 (24/7 Available)
             </a>
           </div>
-          <div className="footer-contact-item">
-            <strong>Service Area:</strong>
-            <br />
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-              <MapPin size={14} />
-              All Across Gujarat (Anywhere to Anywhere)
-            </span>
-          </div>
+
           <div className="footer-cta-box" style={{ marginTop: "16px" }}>
             <button
               type="button"

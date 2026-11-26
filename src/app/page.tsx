@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
-import QuickRoutes from "@/components/QuickRoutes";
 import {
   HomeServicesTeaser,
   HomeFleetTeaser,
@@ -33,10 +32,7 @@ export default function HomePage() {
       {/* 1. Grand Hero with Booking CTA */}
       <HeroSection />
 
-      {/* 2. Fast Route Booking Cards */}
-      <QuickRoutes />
-
-      {/* 3. Concise Services Teaser (Linking to /services) */}
+      {/* 2. Concise Services Teaser (Linking to /services) */}
       <HomeServicesTeaser />
 
       {/* 4. Real Fleet Photo Teaser (Linking to /services) */}

@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
-import QuickRoutes from "@/components/QuickRoutes";
 import TourPackages from "@/components/TourPackages";
 import { Compass, MapPin, CheckCircle2, UtensilsCrossed, Clock, Fuel } from "lucide-react";
 
@@ -56,9 +55,6 @@ export default function GujaratRoutesPage() {
         titleHighlight="Tailored For You"
         subtitle="Explore sacred Jyotirlingas, vibrant White Desert, wildlife sanctuaries, and the world's tallest statue with customized itineraries starting right from your doorstep."
       />
-
-      {/* Quick Routes Selector */}
-      <QuickRoutes />
 
       {/* Comprehensive Tour Packages */}
       <TourPackages />

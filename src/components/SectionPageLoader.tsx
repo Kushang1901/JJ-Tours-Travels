@@ -1,109 +1,71 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export default function SectionPageLoader() {
-  // Start with true so loader appears on initial website page load
   const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+  const prevPathname = useRef(pathname);
 
+  // 1. Initial page load entrance animation
   useEffect(() => {
-    // 1. Initial page load entrance animation
-    const initialLoadTimer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 650);
+    }, 550);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const performSectionJump = (targetElement: HTMLElement, hashHref?: string) => {
+  // 2. Trigger loader whenever moving from one page to another
+  useEffect(() => {
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
       setIsLoading(true);
+      window.scrollTo(0, 0);
 
-      const html = document.documentElement;
-      const previousScrollBehavior = html.style.scrollBehavior;
-      html.style.scrollBehavior = "auto";
+      const hideTimer = setTimeout(() => {
+        setIsLoading(false);
+      }, 480);
 
-      setTimeout(() => {
-        const navOffset = 74; // Sticky header offset
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      return () => clearTimeout(hideTimer);
+    }
+  }, [pathname]);
 
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: "auto",
-        });
-
-        if (hashHref) {
-          try {
-            window.history.pushState(null, "", hashHref);
-          } catch {
-            // safe fallback
-          }
-        }
-
-        html.style.scrollBehavior = previousScrollBehavior;
-
-        // Smooth fade-out once destination is in view
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 130);
-      }, 420);
-    };
-
-    // 2. Global click listener for internal navigation links
-    const handleAnchorClick = (e: MouseEvent) => {
+  // 3. Global click interceptor to activate loader immediately upon clicking any internal navigation link
+  useEffect(() => {
+    const handleLinkClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest("a");
       if (!anchor) return;
 
       const href = anchor.getAttribute("href");
       if (!href) return;
 
-      // Skip external links or phone/whatsapp/booking popup triggers
+      // Skip external links, tel, mailto, whatsapp or in-page hash anchors
       if (
         href.startsWith("tel:") ||
         href.startsWith("mailto:") ||
         href.startsWith("http") ||
-        href.startsWith("#booking")
+        href.startsWith("#") ||
+        anchor.target === "_blank"
       ) {
         return;
       }
 
-      // Handle #home or # or internal section hashes
-      let targetId = "";
-      if (href === "#" || href === "#home") {
-        targetId = "home";
-      } else if (href.startsWith("#")) {
-        targetId = href.substring(1);
-      } else {
-        return;
-      }
+      const currentPath = window.location.pathname;
+      const targetPath = href.split("?")[0].split("#")[0];
 
-      const targetElement = document.getElementById(targetId) || document.body;
-      if (targetElement) {
-        e.preventDefault();
-        performSectionJump(targetElement, href === "#" ? "#home" : href);
+      if (targetPath && targetPath !== currentPath) {
+        setIsLoading(true);
+        // Fallback safety timeout if navigation fails or is aborted
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2500);
       }
     };
 
-    // 3. Programmatic custom event trigger (for buttons like BackToTop, etc.)
-    const handleCustomTrigger = (e: Event) => {
-      const customEvent = e as CustomEvent<{ targetId: string }>;
-      const targetId = customEvent.detail?.targetId;
-      if (!targetId) return;
-
-      const targetElement =
-        targetId === "home" || targetId === "top"
-          ? document.getElementById("home") || document.body
-          : document.getElementById(targetId);
-
-      if (targetElement) {
-        performSectionJump(targetElement, `#${targetId}`);
-      }
-    };
-
-    document.addEventListener("click", handleAnchorClick, { capture: true });
-    window.addEventListener("trigger-section-transition", handleCustomTrigger);
-
+    document.addEventListener("click", handleLinkClick, { capture: true });
     return () => {
-      clearTimeout(initialLoadTimer);
-      document.removeEventListener("click", handleAnchorClick, { capture: true });
-      window.removeEventListener("trigger-section-transition", handleCustomTrigger);
+      document.removeEventListener("click", handleLinkClick, { capture: true });
     };
   }, []);
 
@@ -114,10 +76,10 @@ export default function SectionPageLoader() {
       role="status"
     >
       <div className="section-loader-container">
-        {/* Outer glowing reverse spinner ring */}
+        {/* Outer glowing reverse spinner ring (Temple Gold) */}
         <div className="section-loader-spinner-outer" />
 
-        {/* Primary forward spinning gradient ring */}
+        {/* Primary forward spinning gradient ring (Deep Teal) */}
         <div className="section-loader-spinner-inner" />
 
         {/* Center brand logo */}

@@ -13,8 +13,6 @@ import {
   FileText,
   MessageCircle,
   PhoneCall,
-  CheckCircle2,
-  Copy,
   Sparkles,
   Repeat,
   ArrowRight,
@@ -57,7 +55,6 @@ export default function BookingModal() {
   });
 
   const [formattedMessage, setFormattedMessage] = useState("");
-  const [copied, setCopied] = useState(false);
 
   // Set default dates
   useEffect(() => {
@@ -180,22 +177,12 @@ export default function BookingModal() {
     window.open(url, "_blank");
   };
 
-  const handleCopyText = async () => {
-    try {
-      await navigator.clipboard.writeText(formattedMessage);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   if (!isOpen) return null;
 
   return (
     <div className="popup-modal-overlay" onClick={closeModal} role="dialog" aria-modal="true">
       <div className="popup-modal-container" onClick={(e) => e.stopPropagation()}>
-        
+
         {/* Modal Header */}
         <div className="popup-modal-header">
           <div className="popup-header-title">
@@ -215,7 +202,7 @@ export default function BookingModal() {
         {/* Modal Body / Scrollable Form */}
         <div className="popup-modal-body">
           <form onSubmit={handleSubmit} className="booking-form" noValidate>
-            
+
             {/* Trip Type Selector */}
             <div className="trip-type-selector">
               {[
@@ -494,21 +481,10 @@ export default function BookingModal() {
                 <span>Send Booking Inquiry on WhatsApp</span>
               </button>
 
-              <div style={{ display: "flex", gap: "10px" }}>
-                <a href="tel:+919925891467" className="btn-call-owner" style={{ flex: 1 }}>
-                  <PhoneCall size={18} />
-                  <span>Direct Call: +91 99258 91467</span>
-                </a>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCopyText}
-                  style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
-                >
-                  {copied ? <CheckCircle2 size={16} /> : <Copy size={16} />}
-                  <span>{copied ? "Copied" : "Copy"}</span>
-                </button>
-              </div>
+              <a href="tel:+919925891467" className="btn-call-owner">
+                <PhoneCall size={18} />
+                <span>Direct Call: +91 99258 91467</span>
+              </a>
             </div>
           </form>
         </div>
