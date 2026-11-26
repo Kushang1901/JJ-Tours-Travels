@@ -91,6 +91,9 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
     apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
   },
+  verification: {
+    google: "XyaBMKjj0XSHRG6pkLPUZLyutopPZsj_Ln-RskT6zZE",
+  },
   other: {
     "geo.region": "IN-GJ",
     "geo.placename": "Gujarat, India",

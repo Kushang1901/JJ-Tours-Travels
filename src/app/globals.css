@@ -1196,7 +1196,7 @@ font[style] {
   transition: transform 6s ease-out;
 }
 
-/* 2. Color Overlay (Deep Teal & Forest Green with Temple Gold Glow) */
+/* 2. Color Overlay (Lighter Deep Teal & Forest Green tint so background images shine through) */
 .hero-brand-color-overlay {
   position: absolute;
   inset: 0;
@@ -1204,9 +1204,9 @@ font[style] {
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    rgba(7, 94, 87, 0.82) 0%,
-    rgba(23, 61, 56, 0.87) 50%,
-    rgba(14, 41, 37, 0.93) 100%
+    rgba(7, 94, 87, 0.48) 0%,
+    rgba(23, 61, 56, 0.54) 50%,
+    rgba(14, 41, 37, 0.62) 100%
   );
 }
 
@@ -1215,7 +1215,7 @@ font[style] {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: radial-gradient(circle at center, transparent 35%, rgba(14, 41, 37, 0.6) 100%);
+  background: radial-gradient(circle at center, rgba(14, 41, 37, 0.18) 25%, rgba(14, 41, 37, 0.48) 100%);
 }
 
 /* 3. Centered Content (Optimized to fit desktop screen height seamlessly) */
@@ -3016,11 +3016,28 @@ font[style] {
 
 .bottom-flex a {
   color: var(--secondary) !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--t-fast), opacity var(--t-fast);
+}
+
+.bottom-flex a:hover {
+  color: #F3E6D0 !important;
 }
 
 .bottom-tagline {
   color: var(--gold-dark) !important;
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .bottom-flex {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+  }
 }
 
 /* ────────────────────────────────────────────────────────────

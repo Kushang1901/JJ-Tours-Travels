@@ -98,8 +98,17 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container bottom-flex">
+          <p className="bottom-credit">
+            Designed and Developed by{" "}
+            <a
+              href="https://kushangacharya.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kushang Acharya
+            </a>
+          </p>
           <p>&copy; {currentYear} Jai Jalaram Tours and Travellers. All Rights Reserved.</p>
-          <p className="bottom-tagline">Serving Gujarat with Pride &bull; Jay Jalaram</p>
         </div>
       </div>
     </footer>
